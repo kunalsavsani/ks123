@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Kubernetesdepl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ks
+  template:
+    metadata:
+      labels:
+        app: ks
+    spec:
+      containers:
+      - name: ks
+        image: kubernete999cr.azurecr.io/kubernetes9777repos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: kunal2sn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ks
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: ks
